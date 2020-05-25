@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RestService } from './rest.service';
+// import 'rxjs/add/operator/catch';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -23,18 +24,17 @@ export class AppComponent {
     }
 
     search() {
-        try {
-            this.restService.searchCity(this.searchForm.value.cityName).subscribe(data=>{
-                this.cityData = data;
-                if(this.cityData){
-                    this.gridstatus = true;
-                } else {
-                    this.gridstatus = false;
-                }
-            });
-        } catch (errInfo) {
+        return this.restService.searchCity(this.searchForm.value.cityName).subscribe(data => {
+            this.cityData = data
+            if(this.cityData){
+                this.gridstatus = true;
+            } else {
+                this.gridstatus = false;
+            }
+        },
+        err => {
             this.gridstatus = false;
-            this.errorInfo = errInfo.message;
-        }
+            this.errorInfo = err.error.message;
+        });
     }
 }
