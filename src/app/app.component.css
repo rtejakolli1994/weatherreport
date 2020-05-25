@@ -1,0 +1,29 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .data{
+    background-image: url('https://climate-data.org/ezoimgfmt/maps.climate-data.org/0/0/0.png?ezimgfmt=rs:256x256/rscb9');
+  }
+
+  .degree{
+    background-image: url('https://mw1.google.com/ges/dd/images/ECMWF_ERA5_DAILY_sample.png');
+  }
+
+  .humidity{
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/00/Ice_Clouds_in_Martian_Arctic.gif');
+  }
+
+  .location{
+    background-image: url('https://i.pinimg.com/originals/39/54/be/3954bede3a19787769328a0eda220489.png');
+  }
+
+  .info {
+    background-image: url('https://cdn4.iconfinder.com/data/icons/iconsland-weather/PNG/256x256/Night_Rain.png');
+  }
