@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RestService } from './rest.service';
-// import 'rxjs/add/operator/catch';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -10,31 +10,35 @@ import { RestService } from './rest.service';
 
 export class AppComponent {
     searchForm: FormGroup;
-    gridstatus = false;
-    errorInfo = '';
-    Sunrise :any;
-    Sunset :any;
-    cityData :any;
-    constructor(private restService: RestService, private formBuilder: FormBuilder,) { }
+    searchData: any;
+    searchedData: any;
+    localstoreData = [];
+    constructor(
+        private formBuilder: FormBuilder,
+        private restService: RestService
+    ) { }
 
     ngOnInit() {
         this.searchForm = this.formBuilder.group({
-            cityName: ['', Validators.required],
+            searchValue: ['', Validators.required],
         });
     }
 
     search() {
-        return this.restService.searchCity(this.searchForm.value.cityName).subscribe(data => {
-            this.cityData = data
-            if(this.cityData){
-                this.gridstatus = true;
-            } else {
-                this.gridstatus = false;
-            }
+        return this.restService.searchCity(this.searchForm.value.searchValue).subscribe(data => {
+            this.localstoreData.push(this.searchForm.value.searchValue);
+            this.searchData = data;
+            localStorage.setItem('localstore', JSON.stringify(this.localstoreData));
         },
         err => {
-            this.gridstatus = false;
-            this.errorInfo = err.error.message;
+        });
+    }
+
+    getPhoto(value){
+        return this.restService.searchCity(value).subscribe(data => {
+            this.searchedData = data;
+        },
+        err => {
         });
     }
 }

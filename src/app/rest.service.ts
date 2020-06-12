@@ -5,9 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestService {
-  baseurl = 'https://api.openweathermap.org';
+  baseurl = 'https://pixabay.com/api';
   constructor(private http: HttpClient) { }
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -15,8 +14,7 @@ export class RestService {
   }
 
   searchCity(data){
-    console.log(this.baseurl + `/data/2.5/weather?q=${data}&APPID=ce34cf9db94969f49db23157d98d6bff`);
-    return this.http.get(this.baseurl + `/data/2.5/weather?q=${data}&APPID=ce34cf9db94969f49db23157d98d6bff`, this.httpOptions)
+    return this.http.get(this.baseurl + `/?key=17010698-936e138574ed5ae2664c7cca7&q=${data}&image_type=photo`, this.httpOptions)
   };
 
 }
