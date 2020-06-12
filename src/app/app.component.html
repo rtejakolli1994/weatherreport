@@ -3,7 +3,7 @@
         <div fxFlex="50" class="pr-1" style="text-align: center;">    
             <form [formGroup]="searchForm" (ngSubmit)="search()" class="full-width">
                 <mat-form-field class="full-width">
-                    <input matInput type="text" name="searchValue" [formControl]="searchForm.controls['searchValue']" placeholder="Search By CityName">
+                    <input matInput type="text" name="searchValue" [formControl]="searchForm.controls['searchValue']" placeholder="Search By noun">
                 </mat-form-field>
                 <button mat-raised-button color="primary">Search</button>
             </form>
